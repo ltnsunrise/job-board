@@ -7,7 +7,6 @@ import { useIsDarkMode } from "@/hooks/useIsDarkMode";
 
 function ClerkProvider({ children }: { children: ReactNode }) {
   const isDarkMode = useIsDarkMode();
-  console.log({ isDarkMode });
 
   return (
     <Suspense fallback="loading">

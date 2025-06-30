@@ -2,8 +2,9 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
-import { SidebarMenu, SidebarMenuButton, useSidebar } from "@/components/ui/sidebar";
-import { SignOutButton } from "@clerk/nextjs";
+import { SidebarMenuButton, useSidebar } from "@/components/ui/sidebar";
+import { SignOutButton } from "@/services/clerk/components/AuthButtons";
+import { useClerk } from "@clerk/nextjs";
 import { DropdownMenu, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { ChevronsUpDown, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
@@ -16,6 +17,8 @@ type User = {
 
 const SidebarUserButtonClient = ({ user }: { user: User }) => {
   const { isMobile, setOpenMobile } = useSidebar();
+
+  const { openUserProfile } = useClerk();
 
   return (
     <DropdownMenu>
@@ -33,7 +36,7 @@ const SidebarUserButtonClient = ({ user }: { user: User }) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
-            // openUserProfile();
+            openUserProfile();
             setOpenMobile(false);
           }}
         >
